@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+        <!-- v-on:click.stop -> não irá propagar o evento pela árvore do DOM -->
+
+    <div id="app">
+        <p v-on:click="onClick('p', $event)">
+            Curso de VueJS
+            <button v-on:click.stop="onClick('button', $event)">Clique</button>
+        </p>
+
+        <form>
+            <input type="text" name="" id="">
+            <button type="submit" v-on:click="onSubmit">Enviar sem modificador</button>
+            <button type="submit" v-on:click.prevent.stop="onSubmit">Enviar com modificador</button>
+        </form>
+
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            methods: {
+                onClick : function(elementoAlvo, event){
+                    console.clear();                    
+                    console.log(event.type, ':', elementoAlvo)
+                },
+                onSubmit : function(event){
+                    console.clear();
+                    console.log('Formulário enviado!');
+                }
+            }
+           
+        })
+    </script>
+</body>
+</html>

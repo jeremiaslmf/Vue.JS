@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VueJS - Guia Completo</title>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+</head>
+<body>
+   
+    <!-- Evento clique do mouse = v-on:click
+    Outros eventos:
+    -> https://developer.mozilla.org/en-US/docs/Web/Events
+    ->https://developer.mozilla.org/en-US/docs/Web/API/Event -->
+
+    <div id="app">
+        <button v-on:click="cliqueAqui()">Clique Aqui!</button>
+        <button v-on:click="zerarQuantidadeClique()">Zerar</button>
+        <p>Botão clicado {{ quantidadeCliques }} vezes.</p>        
+        <p v-on:mousemove="atualizarCoordenadas">Coordenadas X: {{ x }} e Y: {{ y }}</p>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el: '#app',
+            data: {
+                quantidadeCliques : 0,
+                x : 0,
+                y : 0,
+            },
+            methods :{
+                cliqueAqui : function(event){
+                    console.log(event);
+                    return this.quantidadeCliques++;
+                },
+                zerarQuantidadeClique : function(){
+                    return this.quantidadeCliques = 0;
+                },
+                atualizarCoordenadas : function(event){
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
